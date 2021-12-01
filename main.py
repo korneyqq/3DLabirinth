@@ -1,16 +1,23 @@
-# This is a sample Python script.
+import pygame as pg
+from settings import *
+from player import Player
+import math
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+pg.init()
+sc = pg.display.set_mode((WIDTH, HEIGHT))
+clock = pg.time.Clock()
+player = Player()
 
+while True:
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
+            exit()
+    player.movement()
+    sc.fill(BLACK)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    pg.draw.circle(sc, GREEN, player.pos, 12)
+    pg.draw.line(sc, GREEN, player.pos, (player.x + WIDTH * math.cos(player.angle), player.y + WIDTH * math.cos(player.angle)))
 
+    pg.display.flip()
+    clock.tick(FPS)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
