@@ -1,35 +1,29 @@
-import pygame as pg
-import pygame.draw
-
+import pygame
 from settings import *
 from player import Player
 import math
 from map import world_map
-from ray_casting import ray_casting
+from drawing import Drawing
 
-pg.init()
-sc = pg.display.set_mode((WIDTH, HEIGHT))
-clock = pg.time.Clock()
+pygame.init()
+sc = pygame.display.set_mode((WIDTH, HEIGHT))
+sc_map = pygame.Surface((WIDTH // MAP_SCALE, HEIGHT // MAP_SCALE))
+clock = pygame.time.Clock()
 player = Player()
+drawing = Drawing(sc, sc_map)
+
 
 while True:
-    for event in pg.event.get():
-        if event.type == pg.QUIT:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
             exit()
     player.movement()
     sc.fill(BLACK)
 
-    pygame.draw.rect(sc, BLUE, (0, 0, WIDTH, HALF_HEIGHT))
-    pygame.draw.rect(sc, DARKGRAY, (0, HALF_HEIGHT, WIDTH, HALF_HEIGHT))
+    drawing.background()
+    drawing.world(player.pos, player.angle)
+    drawing.fps(clock)
+    drawing.mini_map(player)
 
-    ray_casting(sc, player.pos, player.angle)
-
-   # pg.draw.circle(sc, GREEN, (int(player.x),int(player.y)), 12)
-   # pg.draw.line(sc, GREEN, player.pos, (player.x + WIDTH * math.cos(player.angle), player.y + WIDTH * math.sin(player.angle)))
-
-   #  for x, y in world_map:
-   #      pygame.draw.rect(sc, DARKGRAY, (x, y, TILE, TILE), 2)
-
-    pg.display.flip()
-    clock.tick(FPS)
-
+    pygame.display.flip()
+    clock.tick()
