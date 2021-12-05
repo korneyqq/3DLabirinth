@@ -16,7 +16,7 @@ while True:
     sc.fill(BLACK)
 
     pg.draw.circle(sc, GREEN, player.pos, 12)
-    pg.draw.line(sc, GREEN, player.pos, (player.x + WIDTH * math.cos(player.angle), player.y + WIDTH * math.cos(player.angle)))
+    pg.draw.line(sc, GREEN, player.pos, (player.x + WIDTH * math.cos(player.angle), player.y + WIDTH * math.sin(player.angle)))
 
     pg.display.flip()
     clock.tick(FPS)

@@ -4,7 +4,8 @@ WIDTH = 1200
 HEIGHT = 720
 HALF_WIDTH = WIDTH // 2
 HALF_HEIGHT = HEIGHT // 2
-FPS = 60
+FPS = 120
+TILE = 100
 
 # player settings
 player_pos = (HALF_WIDTH, HALF_HEIGHT)
@@ -19,4 +20,4 @@ RED = (220, 0, 0)
 GREEN = (0, 220, 0)
 BLUE = (0, 0, 220)
 DARKGRAY = (110, 110, 110)
-PURPLE = (120, 0 ,120)
+PURPLE = (120, 0, 120)
